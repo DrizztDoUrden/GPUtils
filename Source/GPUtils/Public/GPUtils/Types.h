@@ -68,4 +68,10 @@ namespace Types
 
     template<typename... Ts>
     using Void = typename Detail::MakeVoid<Ts...>::Type;
+
+    template <class TFrom, class TTo, class = Void<>>
+    constexpr bool CanBeCastTo = false;
+
+    template <class TFrom, class TTo>
+    constexpr bool CanBeCastTo<TFrom, TTo, Void<decltype(static_cast<TTo>(DeclVal<TFrom>()))>> = true;
 }
