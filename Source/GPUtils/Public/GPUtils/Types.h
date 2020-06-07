@@ -10,7 +10,7 @@ namespace Types
     using EnableIf = typename TEnableIf<condition, TType>::Type;
 
     template <class TType>
-    constexpr const bool IsPointer = TIsPointer<TType>::Value;
+    constexpr bool IsPointer = TIsPointer<TType>::Value;
 
     namespace Detail
     {
@@ -30,13 +30,13 @@ namespace Types
     using Get = typename Detail::Get<id, TTypes...>::Type;
 
     template <class TType0, class TType1, class... TRest>
-    constexpr const bool AreSame = AreSame<TType0, TType1> && AreSame<TType0, TRest...>;
+    constexpr bool AreSame = AreSame<TType0, TType1> && AreSame<TType0, TRest...>;
 
     template <class TType0>
-    constexpr const bool AreSame<TType0, TType0> = true;
+    constexpr bool AreSame<TType0, TType0> = true;
 
     template <class TType0, class TType1>
-    constexpr const bool AreSame<TType0, TType1> = false;
+    constexpr bool AreSame<TType0, TType1> = false;
 
     template <class TValue, TValue... values>
     struct ValueSequence {};
