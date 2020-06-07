@@ -59,4 +59,13 @@ namespace Types
 
     template <std::size_t count>
     using MakeIndexSequence = typename Detail::MakeIndexSequence<count>::Type;
+
+    namespace Detail
+    {
+        template<typename... Ts>
+        struct MakeVoid { using Type = void; };
+    }
+
+    template<typename... Ts>
+    using Void = typename Detail::MakeVoid<Ts...>::Type;
 }
